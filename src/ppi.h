@@ -16,8 +16,11 @@
 #ifndef ppi_h
 #define ppi_h
 
+
 #include "client/client.h"
 #include "Poco/ThreadPool.h"
+
+namespace ppi {
 
 /** Funcoes exportadas **/
 /** ****************************************************************************************** **/
@@ -100,5 +103,6 @@ public:
 };
 /******************************************************************************/
 
-#endif
+}
 
+#endif

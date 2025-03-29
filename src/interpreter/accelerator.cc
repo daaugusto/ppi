@@ -53,7 +53,9 @@ std::string getAbsoluteDirectory(std::string filepath) {
 /** ***************************** TYPES ****************************** **/
 /** ****************************************************************** **/
 
-namespace { static struct t_data { int max_size; int max_arity; int nlin; int population_size; unsigned local_size1; unsigned global_size1; unsigned local_size2; unsigned global_size2; std::string strategy; cl::Device device; cl::Context context; cl::Kernel kernel1; cl::Kernel kernel2; cl::CommandQueue queue; cl::Buffer buffer_phenotype; cl::Buffer buffer_ephemeral; cl::Buffer buffer_size; cl::Buffer buffer_inputs; cl::Buffer buffer_vector; cl::Buffer buffer_error; cl::Buffer buffer_pb; cl::Buffer buffer_pi; double gpops_gen_kernel; double gpops_gen_communication; double time_gen_kernel1; double time_gen_kernel2; double time_gen_communication_send1; double time_gen_communication_send2; double time_gen_communication_receive1; double time_gen_communication_receive2; double time_total_kernel1; double time_total_kernel2; double time_communication_dataset; double time_total_communication_send1; double time_total_communication_send2; double time_total_communication_receive1; double time_total_communication_receive2; double time_total_communication1; std::string executable_directory; bool verbose; bool transpose; } data; };
+namespace ppi { static struct t_data { int max_size; int max_arity; int nlin; int population_size; unsigned local_size1; unsigned global_size1; unsigned local_size2; unsigned global_size2; std::string strategy; cl::Device device; cl::Context context; cl::Kernel kernel1; cl::Kernel kernel2; cl::CommandQueue queue; cl::Buffer buffer_phenotype; cl::Buffer buffer_ephemeral; cl::Buffer buffer_size; cl::Buffer buffer_inputs; cl::Buffer buffer_vector; cl::Buffer buffer_error; cl::Buffer buffer_pb; cl::Buffer buffer_pi; double gpops_gen_kernel; double gpops_gen_communication; double time_gen_kernel1; double time_gen_kernel2; double time_gen_communication_send1; double time_gen_communication_send2; double time_gen_communication_receive1; double time_gen_communication_receive2; double time_total_kernel1; double time_total_kernel2; double time_communication_dataset; double time_total_communication_send1; double time_total_communication_send2; double time_total_communication_receive1; double time_total_communication_receive2; double time_total_communication1; std::string executable_directory; bool verbose; bool transpose; } data; };
+
+namespace ppi {
 
 /** ****************************************************************** **/
 /** *********************** AUXILIARY FUNCTION *********************** **/
@@ -249,8 +251,8 @@ int build_kernel( int maxlocalsize, int ppp_mode, int prediction_mode )
    }
    //cerr << program_str << endl;
 
-   cl::Program::Sources source( 1, make_pair( program_str.c_str(), program_str.size() ) );
-   
+   cl::Program::Sources source( 1, program_str );
+
    cl::Program program( data.context, source );
 
    vector<cl::Device> device; device.push_back( data.device );
@@ -957,3 +959,5 @@ void acc_print_time( bool total, unsigned long long sum_size )
    printf("; gpops_kernel: %lf, gpops_kernel_communication: %lf", gpops_kernel, gpops_communication);
 }
 #endif
+
+}

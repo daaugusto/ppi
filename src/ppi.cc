@@ -76,7 +76,9 @@ struct Peer {
   float frequency;
 };
 
-namespace { struct t_data { Symbol initial_symbol; Population best_individual; int best_size; unsigned max_size_phenotype; int nlin; Symbol* phenotype; float* ephemeral; int* size; unsigned long long sum_size; int verbose; int machine; int elitism; int population_size; int immigrants_size; int generations; int number_of_bits; int bits_per_gene; int bits_per_constant; int seed; int tournament_size; float mutation_rate; float crossover_rate; float interval[2]; int parallel_version; double time_total_evolve; double time_gen_evolve; double time_generate; double time_total_evaluate; double time_gen_evaluate; double gpops_gen_evaluate; double time_total_crossover; double time_gen_crossover; double time_total_mutation; double time_gen_mutation; double time_total_clone; double time_gen_clone; double time_total_tournament; double time_gen_tournament; double time_total_send; double time_total_receive; double time_gen_receive; double time_total_decode; double time_gen_decode; std::vector<Peer> peers; Pool* pool; unsigned long stagnation_tolerance; RNG ** RNGs; int argc; char ** argv;  } data; };
+namespace ppi { struct t_data { Symbol initial_symbol; Population best_individual; int best_size; unsigned max_size_phenotype; int nlin; Symbol* phenotype; float* ephemeral; int* size; unsigned long long sum_size; int verbose; int machine; int elitism; int population_size; int immigrants_size; int generations; int number_of_bits; int bits_per_gene; int bits_per_constant; int seed; int tournament_size; float mutation_rate; float crossover_rate; float interval[2]; int parallel_version; double time_total_evolve; double time_gen_evolve; double time_generate; double time_total_evaluate; double time_gen_evaluate; double gpops_gen_evaluate; double time_total_crossover; double time_gen_crossover; double time_total_mutation; double time_gen_mutation; double time_total_clone; double time_gen_clone; double time_total_tournament; double time_gen_tournament; double time_total_send; double time_total_receive; double time_gen_receive; double time_total_decode; double time_gen_decode; std::vector<Peer> peers; Pool* pool; unsigned long stagnation_tolerance; RNG ** RNGs; int argc; char ** argv;  } data; };
+
+namespace ppi {
 
 inline RNG * GetRNG() {
 #ifdef _OPENMP
@@ -1050,4 +1052,6 @@ void ppi_destroy()
    delete data.pool;
 
    if( !data.parallel_version ) {seq_interpret_destroy();}
+}
+
 }

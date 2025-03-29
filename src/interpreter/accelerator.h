@@ -20,6 +20,8 @@
 #include <symbol>
 #include "../individual"
 
+namespace ppi {
+
 /** Funcoes exportadas **/
 /** ************************************************************************************************** **/
 /** *********************************** Function interpret_init ************************************** **/
@@ -47,5 +49,7 @@ float* vector, int nInd, void (*send)(Population*), int (*receive)(GENOME_TYPE**
 #ifdef PROFILING
 void acc_print_time( bool total, unsigned long long sum_size );
 #endif
+
+}
 
 #endif

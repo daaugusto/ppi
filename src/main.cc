@@ -154,10 +154,10 @@ int main(int argc, char** argv)
 
       if( Opts.String.Found("-sol") )
       {
-         ppp_init( input, nlin, ncol, argc, argv );
-         ppp_interpret();
-         ppp_print( stdout );
-         ppp_destroy();
+         ppi::ppp_init( input, nlin, ncol, argc, argv );
+         ppi::ppp_interpret();
+         ppi::ppp_print( stdout );
+         ppi::ppp_destroy();
       }
       else
       {
@@ -170,18 +170,18 @@ int main(int argc, char** argv)
          srv.start();
          //sleep(100);
 
-         ppi_init( input, nlin, ncol, argc, argv );
-         int generations = ppi_evolve();
+         ppi::ppi_init( input, nlin, ncol, argc, argv );
+         int generations = ppi::ppi_evolve();
 
          fprintf(stdout, "\n> Overall best:");
-         ppi_print_best( stdout, generations, 1 );
+         ppi::ppi_print_best( stdout, generations, 1 );
 #ifdef PROFILING
          printf(";time_total: %lf", t_total.elapsed());
-         ppi_print_time(false);
+         ppi::ppi_print_time(false);
 #else
          printf("\n");
 #endif
-         ppi_destroy();
+         ppi::ppi_destroy();
       }
 
       destroy(input, nlin);

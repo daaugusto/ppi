@@ -27,11 +27,13 @@
 /** ***************************** TYPES ****************************** **/
 /** ****************************************************************** **/
 
-namespace { static struct t_data { int nlin; Symbol* phenotype; float* ephemeral; int* size; float* vector; int prediction; int parallel_version; } data; };
+namespace ppi { static struct t_data { int nlin; Symbol* phenotype; float* ephemeral; int* size; float* vector; int prediction; int parallel_version; } data; };
 
 /** ****************************************************************** **/
 /** ************************* MAIN FUNCTIONS ************************* **/
 /** ****************************************************************** **/
+
+namespace ppi {
 
 void ppp_init( float** input, int nlin, int ncol, int argc, char** argv ) 
 {
@@ -158,4 +160,6 @@ void ppp_destroy()
    delete[] data.vector;
 
    if( !data.parallel_version ) {seq_interpret_destroy();}
+}
+
 }
