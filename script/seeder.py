@@ -52,13 +52,13 @@ for peer in args.peers:
       # Send the header (Ex: "I000000023")
       header = 'I%s' % (str(len(message)).rjust(9, '0'))
       print("[%s:%d] Trying to send header: %s" % (address,port,header), file=sys.stderr)
-      if sock.send(header) != 10:
+      if sock.send(header.encode()) != 10:
          raise Exception()
       # Send the message
       print("[%s:%d] Trying to send message of size %dB: [%s]" % (address,port,len(message),message), file=sys.stderr)
-      if sock.send(message) != len(message):
+      if sock.send(message.encode()) != len(message):
          raise Exception()
-   except:
-      print("[%s:%d] Couldn't communicate!" % (address,port), file=sys.stderr)
+   except Exception as e:
+      print("[%s:%d] Couldn't communicate: %s" % (address,port,e), file=sys.stderr)
    else:
       print("[%s:%d] Sent genome" % (address,port))
